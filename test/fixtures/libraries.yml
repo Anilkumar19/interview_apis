@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  red_id: 1
+  purchased_on: 2018-03-21
+  user_id: 1
+  description: MyText
+
+two:
+  red_id: 1
+  purchased_on: 2018-03-21
+  user_id: 1
+  description: MyText
