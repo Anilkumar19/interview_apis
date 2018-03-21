@@ -1,6 +1,6 @@
 # interview test
 
-#installation
+# installation
 	
   clone url: git@github.com:Anilkumar19/interview_apis.git
 
@@ -9,5 +9,5 @@
   rake db:create 
   rake db:migrate
   rake db:seed
-  
+
 
