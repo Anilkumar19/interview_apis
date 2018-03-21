@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
    has_many :libraries
 
    #call back
-   after_save :update_user_type
+   before_save :update_user_type
 
 
 
@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
 
     def update_user_type
     	if self.admin
-    		self.update(user_type: "admin")
+    		self.user_type = "admin"
     	else
-    		self.update(user_type: "normal")
+    		self.user_type = "normal"
     	end
     end
 end
