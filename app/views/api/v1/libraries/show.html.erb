@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Red:</strong>
+  <strong>Id:</strong>
   <%= @library.red_id %>
 </p>
 
@@ -20,5 +20,5 @@
   <%= @library.description %>
 </p>
 
-<%= link_to 'Edit', edit_library_path(@library) %> |
-<%= link_to 'Back', libraries_path %>
+<%= link_to 'Edit', edit_api_library_path(id: @library.red_id) %> |
+<%= link_to 'Back', api_library_path %>

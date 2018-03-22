@@ -18,12 +18,17 @@
         <td><%= user.address %></td>
         <td><%= link_to 'Show', api_user_path(id: user.id) %></td>
         <td><%= link_to 'Edit', edit_api_user_path(user) %></td>
-        <td><%= link_to 'Destroy', api_user_path(id: user.id) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', api_user_path(id: user.id) , method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'Create Library', new_api_library_path %>
+<br>
+<%= link_to 'User Libraries', api_libraries_path %>
 
 <%#= link_to 'New User', new_api_user_path %>

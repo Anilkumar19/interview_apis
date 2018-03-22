@@ -1,4 +1,7 @@
-<%= form_for(@library) do |f| %>
+<h1>Editing Library</h1>
+
+<%#= render 'form' %>
+<%= form_for(@library, url: api_library_path, method: :put) do |f| %>
   <% if @library.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@library.errors.count, "error") %> prohibited this library from being saved:</h2>
@@ -31,3 +34,6 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= link_to 'Show', api_library_path %> |
+<%= link_to 'Back', api_libraries_path %>

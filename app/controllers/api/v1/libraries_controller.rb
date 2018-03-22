@@ -4,7 +4,8 @@ class Api::V1::LibrariesController < ApplicationController
   # GET /libraries
   # GET /libraries.json
   def index
-    @libraries = Library.all
+    #currenbt user all libearies
+    @libraries = current_user.libraries.all
   end
 
   # GET /libraries/1
@@ -14,6 +15,7 @@ class Api::V1::LibrariesController < ApplicationController
 
   # GET /libraries/new
   def new
+    @user = current_user
     @library = Library.new
   end
 
@@ -23,13 +25,14 @@ class Api::V1::LibrariesController < ApplicationController
 
   # POST /libraries
   # POST /libraries.json
+  #for creating library 
   def create
     @library = Library.new(library_params)
 
     respond_to do |format|
       if @library.save
-        format.html { redirect_to @library, notice: 'Library was successfully created.' }
-        format.json { render :show, status: :created, location: @library }
+        format.html { redirect_to api_library_path(id: @library.red_id), notice: 'Library was successfully created.' }
+        format.json { render json: @library, status: :created }
       else
         format.html { render :new }
         format.json { render json: @library.errors, status: :unprocessable_entity }
@@ -39,11 +42,12 @@ class Api::V1::LibrariesController < ApplicationController
 
   # PATCH/PUT /libraries/1
   # PATCH/PUT /libraries/1.json
+  #for updating library
   def update
     respond_to do |format|
       if @library.update(library_params)
-        format.html { redirect_to @library, notice: 'Library was successfully updated.' }
-        format.json { render :show, status: :ok, location: @library }
+        format.html { redirect_to :show, notice: 'Library was successfully updated.' }
+        format.json { render json: @library, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @library.errors, status: :unprocessable_entity }
@@ -65,7 +69,8 @@ class Api::V1::LibrariesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_library
-      @library = Library.find(params[:id])
+      #for getting one library
+      @library = Library.find_by_red_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

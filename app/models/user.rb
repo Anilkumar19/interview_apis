@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
    #associations
    has_many :libraries
+   #validations
+   validates :email, :admin, :contact_number, :presence => true
 
    #call back
    before_save :update_user_type
