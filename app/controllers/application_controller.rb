@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
    protect_from_forgery with: :exception
 
   #for exception handling
-  #rescue_from StandardError, with: :standard_error
+  rescue_from StandardError, with: :standard_error
   #for authentication purpose
   before_filter :authenticate_user!
 
