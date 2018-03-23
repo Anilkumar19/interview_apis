@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   #skiping authentication for users creation other actions
-  skip_before_filter :authenticate_user!, only: [:create, :login]
+  skip_before_filter :authenticate_user!, only: [:create, :login, :update]
 
   # GET /api/v1/users
   # GET /api/v1/users.json
