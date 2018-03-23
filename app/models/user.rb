@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
    #associations
-   has_many :libraries
+   has_many :libraries, dependent: :destroy
    #validations
-   validates :email, :admin, :contact_number, :presence => true
+   validates :email, :presence => true
 
    #call back
    before_save :update_user_type
