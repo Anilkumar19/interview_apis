@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: 'users/sessions' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root to: "api/v1/users#index"
@@ -9,9 +9,15 @@ Rails.application.routes.draw do
   namespace :api, path: '/api/' do
      scope module: :v1 do
        resources :users
-       resources :libraries
+       resources :libraries do
+        collection { get :import }
+       end
        #for new user session
        post '/login' => 'users#login'
+     end
+
+     scope module: :v2, path: 'v2', as: 'ver' do
+       resources :libraries
      end
    end
 

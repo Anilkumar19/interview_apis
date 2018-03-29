@@ -1,4 +1,4 @@
-class Api::V1::LibrariesController < ApplicationController
+class Api::V2::LibrariesController < ApplicationController
   before_action :set_library, only: [:show, :edit, :update, :destroy]
 
   # GET /libraries
@@ -31,7 +31,7 @@ class Api::V1::LibrariesController < ApplicationController
 
     respond_to do |format|
       if @library.save
-        format.html { redirect_to api_library_path(id: @library.red_id), notice: 'Library was successfully created.' }
+        format.html { redirect_to api_ver_library_path(id: @library.red_id), notice: 'Library was successfully created.' }
         format.json { render json: @library, status: :created }
       else
         format.html { render :new }
@@ -46,10 +46,10 @@ class Api::V1::LibrariesController < ApplicationController
   def update
     respond_to do |format|
       if @library.update(library_params)
-        format.html { redirect_to api_library_path(id: @library.red_id), notice: 'Library was successfully updated.' }
+        format.html { redirect_to api_ver_library_path(id: @library.red_id), notice: 'Library was successfully updated.' }
         format.json { render json: @library, status: :ok }
       else
-        format.html { render edit_api_library_path(id: @library.red_id) }
+        format.html { render edit_api_ver_library_path(id: @library.red_id) }
         format.json { render json: @library.errors, status: :unprocessable_entity }
       end
     end
@@ -61,19 +61,10 @@ class Api::V1::LibrariesController < ApplicationController
       #authorize @library
     @library.destroy
     respond_to do |format|
-      format.html { redirect_to api_libraries_path, notice: 'Library was successfully destroyed.' }
+      format.html { redirect_to api_ver_libraries_path, notice: 'Library was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
-  def import
-    @libraries = current_user.libraries.order(:red_id).last(10)
-     respond_to do |format|
-     format.html
-     format.csv { send_data Library.to_csv(@libraries) }
-   end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -84,6 +75,6 @@ class Api::V1::LibrariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def library_params
-      params.require(:library).permit(:red_id, :purchased_on, :user_id, :description)
+      params.require(:library).permit(:red_id, :purchased_on, :user_id, :description, :library_data)
     end
 end

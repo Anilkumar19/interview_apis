@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @library.red_id %>
+</p>
+
+<p>
+  <strong>Purchased on:</strong>
+  <%= @library.purchased_on %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @library.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @library.description %>
+</p>
+
+<%= link_to 'Edit', edit_api_ver_library_path(id: @library.red_id) %> |
+<%= link_to 'Back', api_ver_library_path %>

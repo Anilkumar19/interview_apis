@@ -1,16 +1,37 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  #attar accessor parameters :confirmable, :lockable, :timeoutable and :omniauthable
+  attr_accessor :login
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+
 
    #associations
    has_many :libraries, dependent: :destroy
    #validations
-   validates :email, :presence => true
+   validates :email, :presence => { message: "email is required" }
+   validates :username, uniqueness: { case_sensitive: false }, presence: { message: "username is required" }
 
    #call back
    before_save :update_user_type
+
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
+
+   def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
+   end
 
 
 

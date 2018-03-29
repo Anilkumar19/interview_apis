@@ -20,9 +20,9 @@
         <td><%= library.purchased_on %></td>
         <td><%= library.user_id %></td>
         <td><%= library.description %></td>
-        <td><%= link_to 'Show', api_library_path(id: library.red_id) if library.red_id %></td>
-        <td><%= link_to 'Edit', edit_api_library_path(id: library.red_id) if library.red_id %></td>
-        <td><%= link_to 'Destroy', api_library_path(id: library.red_id), method: :delete, data: { confirm: 'Are you sure?' } if library.red_id %></td>
+        <td><%= link_to 'Show', api_ver_library_path(id: library.red_id) if library.red_id %></td>
+        <td><%= link_to 'Edit', edit_api_ver_library_path(id: library.red_id) if library.red_id %></td>
+        <td><%= link_to 'Destroy', api_ver_library_path(id: library.red_id), method: :delete, data: { confirm: 'Are you sure?' } if library.red_id %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,6 +30,4 @@
 
 <br>
 
-<%= link_to 'New Library', new_api_library_path %>
-<br>
-<%= link_to 'click here generate csv', import_api_libraries_path(format: :csv) %>
+<%= link_to 'New Library', new_api_ver_library_path %>

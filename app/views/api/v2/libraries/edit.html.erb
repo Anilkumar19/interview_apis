@@ -1,0 +1,39 @@
+<h1>Editing Library</h1>
+
+<%#= render 'form' %>
+<%= form_for(@library, url: api_ver_library_path, method: :put) do |f| %>
+  <% if @library.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@library.errors.count, "error") %> prohibited this library from being saved:</h2>
+
+      <ul>
+      <% @library.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :red_id %><br>
+    <%= f.number_field :red_id %>
+  </div>
+  <div class="field">
+    <%= f.label :purchased_on %><br>
+    <%= f.date_select :purchased_on %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', api_library_path %> |
+<%= link_to 'Back', api_libraries_path %>

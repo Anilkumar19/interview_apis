@@ -97,6 +97,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :user_type, :contact_number, :address, :auth_token)
+      params.require(:user).permit(:email, :password, :password_confirmation, :user_type, :contact_number, :address, :auth_token, :username)
     end
 end
