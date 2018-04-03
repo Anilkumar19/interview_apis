@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 	layout false
-	default from: "your mail id here (user name)(it is for gmail setting)"
+	default from: "your email user name"
 
 	def welcome_user(user)
 		@user = user

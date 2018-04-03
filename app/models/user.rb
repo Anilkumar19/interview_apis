@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  #attar accessor parameters :confirmable, :lockable, :timeoutable and :omniauthable
-  attr_accessor :login
+  #attar accessor parameters :confirmable, :lockable, :timeoutable and :omniauthabl
 
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
 
+
+  attr_accessor :login
 
    #associations
    has_many :libraries, dependent: :destroy
